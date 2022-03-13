@@ -1,0 +1,124 @@
+		teste - cors app - arquivo gerado a partir do console do heroku
+
+app url: https://teste-cors-app.herokuapp.com/
+comand:  cat procfile & cat index.js & cat /app/view/index.js & cat /app/view/index.html & ls
+
+
+procfile
+---------
+web: node index.js
+
+
+
+index.js
+--------
+const _Port = process.env.PORT || 3003
+
+const view    = require('./view/index')
+const log     = require('morgan')
+const express = require('express')
+
+const app = express()
+
+app.use(log('dev'))
+app.use('/',view)
+
+app.listen(_Port)
+
+/app/view/index.js
+------------------
+const express = require('express')
+const server  = express.Router()
+
+server.route('/').get((req, res)=>{
+    res.sendFile(__dirname + '/index.html')
+})
+
+module.exports = server
+
+
+
+
+
+/app/view/index.html
+------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin:1pc;
+            padding:1pc;
+        }
+        body{
+
+        }
+        #container{
+            border-radius:6px;
+            box-shadow:3px 3px 3px rgba(0, 0, 0, 0.1);
+            background:linear-gradient(47deg, white 45%, whitesmoke 55%);
+        }
+    </style>
+    <title>cors policy&reg;</title>
+</head>
+<body>
+    <div id="container"></div>
+    
+    <script>
+      let doc = document
+
+      let container = doc.getElementById('container')
+
+       function loadData(){
+            const url = 'https://teste-cors-api.herokuapp.com'
+            const config = {
+                method:'GET'
+            }
+
+            fetch(url,config)
+                    .then(response => response.json())
+                    .then(response=>{
+                        response.map(e=>{
+                            let idBk = e.id
+                            let idUl = doc.createElement('ul')
+                            idUl.style.color = 'rgba(0,0,0,0.5)'
+                            idUl.style.background = 'rgba(0,0,0,0.2)'
+                            idUl.append(idBk)
+                            container.append(idUl)
+
+                            let usernameBk = e.username
+                            let usernameUl = doc.createElement('ul')
+                            usernameUl.style.color = 'rgba(0,0,0,0.5)'
+                            usernameUl.style.background = 'rgba(0,0,0,0.2)'
+                            usernameUl.append(usernameBk)
+                            container.append(usernameUl)
+
+                            let emailBk = e.email
+                            let emailUl = doc.createElement('ul')
+                            emailUl.style.color = 'darkred'
+                            emailUl.style.background = 'rgba(0,0,0,0.2)'
+                            emailUl.append(emailBk)
+                            container.append(emailUl)
+
+                            let line = doc.createElement('br')
+                            container.append(line)
+                        })
+                    })
+                    .catch(err => console.log(err))
+       }
+       loadData()
+    </script>
+</body>
+</html>
+
+
+
+
+comando: [ls]
+-------------
+
+index.js  node_modules	package-lock.json  package.json  procfile  view
+
