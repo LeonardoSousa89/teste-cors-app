@@ -1,6 +1,8 @@
 		teste - cors app - arquivo gerado a partir do console do heroku
 		
-/*esta aplicação foi um teste de CORS bem sucedido a aplicação frontend conseguiu se comunicar
+/*
+
+esta aplicação foi um teste de CORS bem sucedido a aplicação frontend conseguiu se comunicar
 com a api sem o bloqueio de CORS a partir da retirada das barras finais da url de origem na
 api.
 
