@@ -1,8 +1,12 @@
 		teste - cors app - arquivo gerado a partir do console do heroku
 
+/* url do app */
 app url: https://teste-cors-app.herokuapp.com/
+
+/* comando usado no console do heroku */
 comand:  cat procfile & cat index.js & cat /app/view/index.js & cat /app/view/index.html & ls
 
+/*o arquivo gerado vem embaralhado(desorganizado), eu renomeei arquivo por arquivo e organizei o documento*/
 
 procfile
 ---------
